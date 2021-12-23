@@ -1,6 +1,5 @@
 const googleapis = require('googleapis');
 const mime = require('mime-types');
-const config = require('config');
 
 /**
  * control google drive
@@ -13,6 +12,7 @@ module.exports = class GoogleDrive {
     GOOGLE_MIME_TYPE;
     
     /**
+     * @param {Object} credentials 專案憑證
      * @param {Object} token drive access_token
      * @param {string} token.access_token
      * @param {string} token.refresh_token
@@ -20,8 +20,8 @@ module.exports = class GoogleDrive {
      * @param {string} token.token_type
      * @param {Date} token.expiry_date
      */
-    constructor(token) {
-        const { client_id, client_secret, redirect_uris } = config.get('google-api-credentials');
+    constructor(credentials, token) {
+        const { client_id, client_secret, redirect_uris } = credentials;
         const auth = new googleapis.google.auth.OAuth2( client_id, client_secret, redirect_uris[0] );
         auth.setCredentials( {...token} );
         this.#drive = googleapis.google.drive( {

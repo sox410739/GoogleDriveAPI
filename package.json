@@ -6,7 +6,6 @@
   "author": "cockroach",
   "license": "ISC",
   "dependencies": {
-    "config": "^3.3.6",
     "googleapis": "^39.2.0",
     "mime-types": "^2.1.34"
   }
